@@ -8,6 +8,10 @@ class App extends React.Component {
     count: 0,
   }
 
+  // UNSAFE_componentWillMount() {
+  //   console.log('This lifecycle hook should be avoided')
+  // }
+
   increment = () => {
     this.setState((state) => ({ count: state.count + 1 }))
   }
@@ -17,19 +21,22 @@ class App extends React.Component {
   }
 
   render() {
+    // throw new Error('Boom!')
     const { count } = this.state
     return (
-      <div>
-        <h1>Hello world</h1>
-        <h2 className={count > 10 ? 'warning' : null}>Count: {count}</h2>
-        <button onClick={this.increment}>+</button>
-        <button onClick={this.decrement}>-</button>
-        {count > 10 ? (
-          <React.Suspense fallback={null}>
-            <Warning />
-          </React.Suspense>
-        ) : null}
-      </div>
+      <main>
+        <div>
+          <h1>Hello world</h1>
+          <h2 className={count > 10 ? 'warning' : null}>Count: {count}</h2>
+          <button onClick={this.increment}>+</button>
+          <button onClick={this.decrement}>-</button>
+          {count > 10 ? (
+            <React.Suspense fallback={null}>
+              <Warning />
+            </React.Suspense>
+          ) : null}
+        </div>
+      </main>
     )
   }
 }
